@@ -1,11 +1,11 @@
 from captum.attr import LayerIntegratedGradients
-import json
 import matplotlib.pyplot as plt
 import numpy as np
 import openai
 import pandas as pd
 import re
 import seaborn as sns
+from scipy import stats
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import torch
@@ -655,13 +655,13 @@ def analyze_legislative_biases(analyzer, texts=None):
     if texts is None:
         texts = get_example_biases()
 
-    results_df = analyzer.analyze_category_bias(test_texts)
+    results_df = analyzer.analyze_category_bias(texts)
 
     print("\nBias Analysis Summary:")
     print("-" * 80)
 
     print("\nPrediction Patterns:")
-    for category in test_texts.keys():
+    for category in texts.keys():
         category_data = results_df[results_df['intended_category'] == category]
         print(f"\n{category}:")
         print(f"Average confidence: {category_data['confidence'].mean():.4f}")
