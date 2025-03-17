@@ -18,18 +18,18 @@ device = torch.device('mps') if torch.backends.mps.is_available() else (
 )
 print(f"Using device: {device}")
 
-class EthicalAlignmentFramework:
+class EthicsAnalyzer:
     def __init__(self, model, tokenizer):
         self.model = model
         self.tokenizer = tokenizer
 
-        self.category_weights = {
+        self.cat_weights = {
             'Civil Rights and Liberties': 1.2,
             'Immigration': 1.0,
             'Economics': 1.0,
         }
 
-        self.sensitive_terms = {
+        self.terms = {
             'rights': 1.3,
             'discrimination': 1.3,
             'equality': 1.3,
@@ -42,7 +42,7 @@ class EthicalAlignmentFramework:
             'immigrant': 1.1,
         }
 
-    def ethically_adjusted_prediction(self, text: str):
+    def get_ethics_predictions(self, text):
         inputs = self.tokenizer(
             text,
             return_tensors="pt",
@@ -53,26 +53,25 @@ class EthicalAlignmentFramework:
 
         with torch.no_grad():
             outputs = self.model(**inputs)
-            base_probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
+            orig_probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
 
-        adjusted_probs = self.apply_ethical_weights(text, base_probs[0])
-
-        predicted_class = torch.argmax(adjusted_probs).item()
+        probs = self.apply_weights(text, orig_probs[0])
+        pred_class = torch.argmax(probs).item()
 
         return {
             'text': text,
-            'original_prediction': torch.argmax(base_probs).item(),
-            'adjusted_prediction': predicted_class,
-            'original_confidence': float(torch.max(base_probs).item()),
-            'adjusted_confidence': float(adjusted_probs[predicted_class]),
+            'original_prediction': torch.argmax(orig_probs).item(),
+            'adjusted_prediction': pred_class,
+            'original_confidence': float(torch.max(orig_probs).item()),
+            'adjusted_confidence': float(probs[pred_class]),
             'ethical_adjustment_factors': self.calculate_adjustment_factors(text)
         }
 
-    def apply_ethical_weights(self, text: str, base_probs: torch.Tensor):
-        adjustment_factors = self.calculate_adjustment_factors(text)
+    def apply_weights(self, text, base_probs):
+        adjustment_factors = self.calculate_adjustments(text)
         adjusted_probs = base_probs.clone()
 
-        for category, weight in self.category_weights.items():
+        for category, weight in self.cat_weights.items():
             if category == 'Civil Rights and Liberties':
                 label_index = 14
             elif category == 'Immigration':
@@ -86,27 +85,27 @@ class EthicalAlignmentFramework:
 
         return adjusted_probs
 
-    def calculate_adjustment_factors(self, text: str):
+    def calculate_adjustments(self, text):
         factors = {'term_weight': 1.0}
-        term_weights = []
+        weights = []
 
         text = text.lower()
 
-        for term, weight in self.sensitive_terms.items():
+        for term, weight in self.terms.items():
             if term in text:
-                term_weights.append(weight)
+                weights.append(weight)
 
-        if term_weights:
-            factors['term_weight'] = np.mean(term_weights)
+        if weights:
+            factors['term_weight'] = np.mean(weights)
 
         return factors
 
-    def evaluate_ethical_alignment(self, texts):
+    def evaluate_ethics(self, texts):
         results = []
 
         for text in texts:
-            prediction = self.ethically_adjusted_prediction(text)
-            results.append(prediction)
+            pred = self.get_ethics_predictions(text)
+            results.append(pred)
 
         return pd.DataFrame(results)
 
@@ -115,7 +114,7 @@ class LegislativeBiasAnalyzer:
         self.model = model
         self.tokenizer = tokenizer
 
-        self.sensitive_terms = {
+        self.terms = {
             'racial': ['race', 'racial', 'ethnic', 'minority', 'discrimination', 'african', 'asian', 'hispanic'],
             'gender': ['gender', 'woman', 'women', 'man', 'men', 'female', 'male', 'sex'],
             'religious': ['religion', 'religious', 'faith', 'belief', 'worship', 'church', 'mosque', 'temple'],
@@ -123,7 +122,7 @@ class LegislativeBiasAnalyzer:
             'socioeconomic': ['poor', 'poverty', 'income', 'wealth', 'economic', 'class', 'welfare']
         }
 
-    def analyze_bias_in_text(self, text: str):
+    def analyze_legislative_bias(self, text: str):
         inputs = self.tokenizer(
             text,
             return_tensors="pt",
@@ -137,7 +136,7 @@ class LegislativeBiasAnalyzer:
             probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
 
         tokens = self.tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
-        term_analysis = self._analyze_sensitive_terms(tokens)
+        term_analysis = self.analyze_terms(tokens)
 
         return {
             'text': text,
@@ -146,34 +145,34 @@ class LegislativeBiasAnalyzer:
             'sensitive_terms': term_analysis
         }
 
-    def _analyze_sensitive_terms(self, tokens):
+    def analyze_terms(self, tokens):
         results = {}
 
-        for category, terms in self.sensitive_terms.items():
-            found_terms = []
+        for cat, terms in self.terms.items():
+            terms_found = []
 
             for term in terms:
                 term_tokens = self.tokenizer.tokenize(term)
                 if any(t in tokens for t in term_tokens):
-                    found_terms.append(term)
+                    terms_found.append(term)
 
-            if found_terms:
-                results[category] = found_terms
+            if terms_found:
+                results[cat] = terms_found
 
         return results
 
-    def analyze_category_bias(self, texts_by_category):
+    def analyze_bias_by_cat(self, cat_texts):
         results = []
 
-        for category, texts in texts_by_category.items():
+        for cat, texts in cat_texts.items():
             for text in texts:
-                analysis = self.analyze_bias_in_text(text)
-                analysis['intended_category'] = category
+                analysis = self.analyze_legislative_bias(text)
+                analysis['intended_category'] = cat
                 results.append(analysis)
 
         return pd.DataFrame(results)
 
-    def visualize_bias_patterns(self, df: pd.DataFrame):
+    def visualize_biases(self, df: pd.DataFrame):
         plt.figure(figsize=(15, 6))
         sns.boxplot(data=df, x='intended_category', y='confidence')
         plt.xticks(rotation=45, ha='right')
@@ -181,50 +180,50 @@ class LegislativeBiasAnalyzer:
         plt.tight_layout()
         plt.show()
 
-        sensitive_counts = {category: [] for category in self.sensitive_terms.keys()}
+        counts = {cat: [] for cat in self.terms.keys()}
         for _, row in df.iterrows():
-            for category in self.sensitive_terms.keys():
-                if category in row['sensitive_terms']:
-                    sensitive_counts[category].append(len(row['sensitive_terms'][category]))
+            for cat in self.terms.keys():
+                if cat in row['sensitive_terms']:
+                    counts[cat].append(len(row['sensitive_terms'][cat]))
                 else:
-                    sensitive_counts[category].append(0)
+                    counts[cat].append(0)
 
         plt.figure(figsize=(10, 6))
-        plt.bar(sensitive_counts.keys(), [np.mean(counts) for counts in sensitive_counts.values()])
+        plt.bar(counts.keys(), [np.mean(counts) for counts in counts.values()])
         plt.xticks(rotation=45, ha='right')
         plt.title('Average Sensitive Term Usage by Category')
         plt.tight_layout()
         plt.show()
 
-class ExtendedBiasAnalyzer:
+class IntersectionalBiasAnalyzer:
     def __init__(self, model, tokenizer):
         self.model = model
         self.tokenizer = tokenizer
 
-    def analyze_intersectional_bias(self, texts_by_category):
+    def analyze_biases(self, cat_texts):
         results = []
 
-        for category, texts in texts_by_category.items():
+        for cat, texts in cat_texts.items():
             for text in texts:
                 inputs = self.tokenizer(text, return_tensors="pt", padding=True, truncation=True).to(device)
                 with torch.no_grad():
                     outputs = self.model(**inputs)
                     probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
 
-                intersectional_terms = self.check_intersectional_terms(text)
+                terms = self.find_terms(text)
 
                 results.append({
-                    'category': category,
+                    'category': cat,
                     'text': text,
                     'confidence': float(torch.max(probs).item()),
-                    'intersectional_terms': intersectional_terms,
+                    'intersectional_terms': terms,
                     'prediction': torch.argmax(probs).item()
                 })
 
         return pd.DataFrame(results)
 
-    def check_intersectional_terms(self, text: str):
-        intersectional_categories = {
+    def find_terms(self, text):
+        categories = {
             'race_gender': ['african american women', 'latina women', 'asian men'],
             'religion_nationality': ['muslim immigrants', 'jewish refugees'],
             'socioeconomic_race': ['minority poverty', 'racial wealth gap'],
@@ -233,64 +232,51 @@ class ExtendedBiasAnalyzer:
         }
 
         found_terms = {}
-        for category, terms in intersectional_categories.items():
+        for cat, terms in categories.items():
             matches = [term for term in terms if term.lower() in text.lower()]
             if matches:
-                found_terms[category] = matches
+                found_terms[cat] = matches
 
         return found_terms
 
-    def calculate_statistical_significance(self, df: pd.DataFrame):
-        categories = df['category'].unique()
+    def calc_stats(self, df):
+        cats = df['category'].unique()
 
         print("\nStatistical Analysis of Confidence Differences:")
         print("-" * 80)
 
-        category_groups = [group['confidence'].values for name, group in df.groupby('category')]
-        f_stat, p_value = stats.f_oneway(*category_groups)
+        cat_groups = [group['confidence'].values for _, group in df.groupby('category')]
+        f_stat, p_value = stats.f_oneway(*cat_groups)
 
         print(f"One-way ANOVA results:")
         print(f"F-statistic: {f_stat:.4f}")
         print(f"p-value: {p_value:.4f}")
 
         print("\nPairwise t-tests:")
-        for i in range(len(categories)):
-            for j in range(i+1, len(categories)):
-                cat1_data = df[df['category'] == categories[i]]['confidence']
-                cat2_data = df[df['category'] == categories[j]]['confidence']
+        for i in range(len(cats)):
+            for j in range(i+1, len(cats)):
+                cat1_data = df[df['category'] == cats[i]]['confidence']
+                cat2_data = df[df['category'] == cats[j]]['confidence']
                 t_stat, p_val = stats.ttest_ind(cat1_data, cat2_data)
-                print(f"{categories[i]} vs {categories[j]}:")
+                print(f"{cats[i]} vs {cats[j]}:")
                 print(f"t-statistic: {t_stat:.4f}")
                 print(f"p-value: {p_val:.4f}")
                 print()
 
-    def visualize_extended_analysis(self, df: pd.DataFrame):
+    def visualize_intersectional_analysis(self, df):
         plt.figure(figsize=(12, 6))
         sns.barplot(data=df, x='category', y='confidence', ci=95)
         plt.title('Prediction Confidence by Category with 95% Confidence Intervals')
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.show()
-
-class LegislativeDataset(Dataset):
-    def __init__(self, encodings, labels):
-        self.encodings = encodings
-        self.labels = labels
-
-    def __getitem__(self, idx):
-        item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
-        item['labels'] = torch.tensor(self.labels[idx])
-        return item
-
-    def __len__(self):
-        return len(self.labels)
     
 class LegislativeBillAnalyzer:
     def __init__(self, model, tokenizer):
         self.model = model
         self.tokenizer = tokenizer
 
-        self.label_mapping = {
+        self.labels_map = {
             0: "Agriculture and Food",
             5: "Armed Forces and National Security",
             14: "Civil Rights and Liberties, Minority Issues",
@@ -330,13 +316,13 @@ class LegislativeBillAnalyzer:
             self.model.bert.embeddings
         )
 
-    def get_category_name(self, label_id: int) -> str:
-        return self.label_mapping.get(label_id, f"Unknown Category (Label_{label_id})")
+    def get_category_name(self, label_id):
+        return self.labels_map.get(label_id, f"Unknown Category (Label_{label_id})")
 
-    def forward_func(self, inputs: torch.Tensor, attention_mask: torch.Tensor = None) -> torch.Tensor:
+    def forward_func(self, inputs, attention_mask=None):
         return self.model(inputs, attention_mask=attention_mask).logits
 
-    def analyze_bill(self, text: str):
+    def analyze_bill(self, text):
         inputs = self.tokenizer(
             text,
             return_tensors="pt",
@@ -406,6 +392,19 @@ class LegislativeBillAnalyzer:
         plt.tight_layout()
         plt.show()
 
+class LegalDataset(Dataset):
+    def __init__(self, encodings, labels):
+        self.encodings = encodings
+        self.labels = labels
+
+    def __getitem__(self, idx):
+        item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+        item['labels'] = torch.tensor(self.labels[idx])
+        return item
+
+    def __len__(self):
+        return len(self.labels)
+    
 def get_congress_cats():
     return [
         'Agriculture and Food',
@@ -483,8 +482,6 @@ def replace_abbreviations(text):
 def clean_master_df(df):
     df = df.dropna(subset=['Title'])
     df['clean_title'] = df['Title'].apply(replace_abbreviations)
-    new_titles = df[df['Title'] != df['clean_title']][['Title', 'Title_cleaned']]
-
     return df
 
 def categorize_missing_cats(df, client, categories, output_file):
@@ -507,7 +504,7 @@ def categorize_missing_cats(df, client, categories, output_file):
 
     return df 
 
-def tokenize_function(texts, tokenizer):
+def tokenize_texts(texts, tokenizer):
     return tokenizer(texts, padding=True, truncation=True, max_length=512)
 
 def encode_labels(df):
@@ -520,11 +517,11 @@ def encode_labels(df):
 def get_train_val_datasets(tokenizer, titles, encoded_labels):
     train_texts, val_texts, train_labels, val_labels = train_test_split(titles, encoded_labels, test_size=0.2, random_state=42)
 
-    train_encodings = tokenize_function(train_texts, tokenizer)
-    val_encodings = tokenize_function(val_texts, tokenizer)
+    train_encodings = tokenize_texts(train_texts, tokenizer)
+    val_encodings = tokenize_texts(val_texts, tokenizer)
 
-    train_dataset = LegislativeDataset(train_encodings, train_labels)
-    val_dataset = LegislativeDataset(val_encodings, val_labels)
+    train_dataset = LegalDataset(train_encodings, train_labels)
+    val_dataset = LegalDataset(val_encodings, val_labels)
     
     return train_dataset, val_dataset
 
@@ -585,8 +582,8 @@ def get_example_ethics_statements():
         "To promote economic development in underserved communities."
     ]
 
-def get_example_biases(extended=False):
-    if extended:
+def get_example_biases(intersectional=False):
+    if intersectional:
         return {
             'Civil Rights': [
                 "To protect against discrimination based on race and gender in employment.",
@@ -655,7 +652,7 @@ def analyze_legislative_biases(analyzer, texts=None):
     if texts is None:
         texts = get_example_biases()
 
-    results_df = analyzer.analyze_category_bias(texts)
+    results_df = analyzer.analyze_bias_by_cat(texts)
 
     print("\nBias Analysis Summary:")
     print("-" * 80)
@@ -674,21 +671,21 @@ def analyze_legislative_biases(analyzer, texts=None):
         else:
             print("None found")
 
-    analyzer.visualize_bias_patterns(results_df)
+    analyzer.visualize_biases(results_df)
 
 def analyze_extended_biases(analyzer, texts=None):
     if texts is None:
-        texts = get_example_biases(extended=True)
+        texts = get_example_biases(intersectional=True)
 
-    results_df = analyzer.analyze_intersectional_bias(texts)
-    analyzer.calculate_statistical_significance(results_df)
-    analyzer.visualize_extended_analysis(results_df)
+    results_df = analyzer.analyze_biases(texts)
+    analyzer.calc_stats(results_df)
+    analyzer.visualize_intersectional_analysis(results_df)
 
-def evaluate_model_ethics(aligner, texts=None):
+def evaluate_model_ethics(analyzer, texts=None):
     if texts is None:
         texts = get_example_ethics_statements()
 
-    results = aligner.evaluate_ethical_alignment(texts)
+    results = analyzer.evaluate_ethics(texts)
 
     print("\nEthical Alignment Results:")
     print("-" * 80)
@@ -707,13 +704,13 @@ def comprehensive_model_analysis(model, tokenizer):
     legislative_bias_analyzer = LegislativeBiasAnalyzer(model, tokenizer)
     analyze_legislative_biases(legislative_bias_analyzer)
 
-    extended_bias_analzyer = ExtendedBiasAnalyzer(model, tokenizer)
+    extended_bias_analzyer = IntersectionalBiasAnalyzer(model, tokenizer)
     analyze_extended_biases(extended_bias_analzyer)
 
-    ethics_aligner = EthicalAlignmentFramework(model, tokenizer)
-    evaluate_model_ethics(ethics_aligner)
+    ethics_analyzer = EthicsAnalyzer(model, tokenizer)
+    evaluate_model_ethics(ethics_analyzer)
 
-def main():
+def main(run_evaluation=True):
     wandb.init(project="legal-bert-classification", name="training-run-1")
 
     master_file = './data/master.csv'
@@ -734,7 +731,7 @@ def main():
 
     encoded_labels, num_labels = encode_labels(categories)
 
-    model_name = "nlpaueb/legal-bert-base-uncased"
+    model_name = "bert-base-uncased"
     model = BertForSequenceClassification.from_pretrained(model_name, num_labels=num_labels).to(device)
     tokenizer = BertTokenizer.from_pretrained(model_name)
 
@@ -742,9 +739,10 @@ def main():
 
     trainer = train_model(model, tokenizer, train_dataset, val_dataset)
 
-    model.eval()
-    evaluate_model(trainer)
-    comprehensive_model_analysis(model, tokenizer)
+    if run_evaluation:
+        model.eval()
+        evaluate_model(trainer)
+        comprehensive_model_analysis(model, tokenizer)
 
     wandb.finish()
 
