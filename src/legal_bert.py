@@ -12,6 +12,7 @@ import torch
 from torch.utils.data import Dataset
 from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
 import wandb
+from process_data import DataProcessor
 
 device = torch.device('mps') if torch.backends.mps.is_available() else (
     torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -441,69 +442,6 @@ def get_congress_cats():
         'Telecommunications and Information'
     ]
 
-def get_cat_from_gpt(client, title, categories):
-    prompt = f"""
-    You are tasked with categorizing legislative bills into the following categories:
-    {', '.join(categories)}.
-    Based on the title of the bill, assign it to the most appropriate category.
-    If it's unclear, assign it to 'other'. Be sure to only return the category and nothing else.
-
-    Title: "{title}"
-    """
-
-    chat_completion = client.chat.completions.create(
-        model="gpt-4-turbo",
-        messages=[
-            {"role": "system", "content": "You are an advanced AI assistant who categorizes legislative bills using knowledge of the U.S Law."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=50,
-        temperature=0
-    )
-
-    category = chat_completion.choices[0].message.content.strip()
-    return category
-    
-# apply each abbreviation replacement to the 'Title' column
-def replace_abbreviations(text):
-    abbreviation_replacements = {
-        r'&c.': 'Etcetera',
-        r'&': 'and',
-        r'\bet al\b': 'and others',
-        r'\bviz\b\.': 'namely',
-        r'\bi\.e\b\.': 'that is',
-        r'\be\.g\b\.': 'for example'
-    }
-
-    for pattern, replacement in abbreviation_replacements.items():
-        text = re.sub(pattern, replacement, text)
-    return text
-
-def clean_master_df(df):
-    df = df.dropna(subset=['Title'])
-    df['clean_title'] = df['Title'].apply(replace_abbreviations)
-    return df
-
-def categorize_missing_cats(df, client, categories, output_file):
-    if 'Subject' not in df.columns:
-        df['Subject'] = pd.NA
-    
-    missing_cats = df[df['Subject'].isna()]
-
-    batch_size = 500
-    if len(missing_cats) > 0:
-        rows_to_process = missing_cats.head(batch_size)
-        df.loc[rows_to_process.index, 'Subject'] = rows_to_process['Title'].apply(
-            lambda title: get_cat_from_gpt(client, title, categories)
-        )
-        df.to_csv(output_file, index=False)
-
-        print(f"Successfully categorized {len(rows_to_process)} rows. Data saved to a CSV.")
-    else:
-        print("No further categorization necessary")
-
-    return df 
-
 def tokenize_texts(texts, tokenizer):
     return tokenizer(texts, padding=True, truncation=True, max_length=512)
 
@@ -713,21 +651,16 @@ def comprehensive_model_analysis(model, tokenizer):
 def main(run_evaluation=True):
     wandb.init(project="legal-bert-classification", name="training-run-1")
 
-    master_file = './data/master.csv'
-    master_df = pd.read_csv(master_file)
-    
-    '''
-    Unnecessary since we already have the categorized df
+    # Initialization of data dir and csv file names
+    DATA_DIR = '../data'
+    UNCATEGORIZED_MASTER_CSV = 'masterUncategorized.csv'
+    CATEGORIZED_MASTER_CSV = 'masterCategorized.csv'
 
-    client = openai.OpenAI(api_key="use gpt api (this process takes ~20 hours)")
-    categories_file = './data/masterCategorized.csv'
-
-    master_df = clean_master_df(master_df)
-    master_df = pd.read_csv(categories_file)
-    master_df = categorize_missing_cats(master_df, client, categories, categories_file)'
-    '''
-    titles = master_df['Title'].astype(str).tolist()
-    categories = master_df['Subject'].tolist()
+    # Process data 
+    data_processor = DataProcessor(DATA_DIR, UNCATEGORIZED_MASTER_CSV, CATEGORIZED_MASTER_CSV)
+    master_df = data_processor.process_data()
+    titles = data_processor.get_titles(master_df)
+    categories = data_processor.get_categories(master_df)
 
     encoded_labels, num_labels = encode_labels(categories)
 
