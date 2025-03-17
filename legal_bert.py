@@ -528,7 +528,7 @@ def get_train_val_datasets(tokenizer, titles, encoded_labels):
 def train_model(model, tokenizer, train_dataset, val_dataset):
     training_args = TrainingArguments(
         output_dir='./results',
-        evaluation_strategy='epoch',
+        eval_strategy='epoch',
         save_strategy='epoch',
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
