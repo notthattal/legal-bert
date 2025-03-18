@@ -121,9 +121,9 @@ legal-bert/
 │       ├── vocab.txt
 ├── src/                            # Source code for model training and evaluation
 │   ├── __init__.py
-│   ├── evaluate.py
+│   ├── evaluate.py                 # Evaluation pipeline
 │   ├── legal_bert.py               # Core model implementation
-│   ├── process_data.py             # Data processing utilities
+│   ├── process_data.py             # Data processing 
 │   ├── train.py                    # Training script
 ├── venv/                           
 ├── .gitignore                      # Git ignore file
