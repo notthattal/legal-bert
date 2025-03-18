@@ -161,13 +161,14 @@ pip install -r requirements.txt
    rm models.zip
 ```
 
-4. To run evalutaion: 
+4. To run evaluation: 
 ```bash
 cd src
 python evaluate.py
 ```
 - This outputs an HTML File alongside plots and confusion matrices under `legal-bert/evaluation_results`
 
+5. Note: model training was done using the scrip `run_leagl_bert.ipynb` on Colab using an A100. Running the script `legal_bert.py` won't start the training
 ---
 
 ## Conclusion

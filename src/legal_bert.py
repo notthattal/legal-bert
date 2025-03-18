@@ -18,6 +18,8 @@ def main(run_evaluation=True):
 
     # Initialization of data dir and csv file names
     DATA_DIR = '../data'
+    MODELS_DIR = '../models'
+    FINE_TUNED_MODEL_DIR = 'fine_tuned_legalbert'
     UNCATEGORIZED_MASTER_CSV = 'masterUncategorized.csv'
     CATEGORIZED_MASTER_CSV = 'masterCategorized.csv'
 
@@ -30,21 +32,27 @@ def main(run_evaluation=True):
     categories = data_processor.get_categories(master_df)
     titles = data_processor.get_titles(master_df)
 
-
-    bill_classifier_trainer = BillClassifierTrainer(base_model_name="distilbert-base-uncased",
-                                                    train_data_path=os.path.join(DATA_DIR, CATEGORIZED_MASTER_CSV))
+    if os.path.exists(os.path.join(MODELS_DIR, FINE_TUNED_MODEL_DIR)):
+        print('\nFine-tuned model has been detected...')
+        print('\nSkipping Training..')
     
-    model_name = "distilbert-base-uncased"
-    model = DistilBertForSequenceClassification.from_pretrained(model_name, num_labels=num_labels).to(bill_classifier_trainer.device)
-    tokenizer = DistilBertTokenizer.from_pretrained(model_name)
+    else:
+        print('\nWARNING: You are attempting to run training locally.')
+        print('\nNOTE: Fine-tuning the model has been done on Colab using A100 by running the notebook run_legal_bert.ipynb')
+        bill_classifier_trainer = BillClassifierTrainer(base_model_name="distilbert-base-uncased",
+                                                        train_data_path=os.path.join(DATA_DIR, CATEGORIZED_MASTER_CSV))
+        
+        model_name = "distilbert-base-uncased"
+        model = DistilBertForSequenceClassification.from_pretrained(model_name, num_labels=num_labels).to(bill_classifier_trainer.device)
+        tokenizer = DistilBertTokenizer.from_pretrained(model_name)
 
 
-    encoded_labels, num_labels = bill_classifier_trainer.encode_labels(categories)
+        encoded_labels, num_labels = bill_classifier_trainer.encode_labels(categories)
 
 
-    train_dataset, val_dataset = bill_classifier_trainer.get_train_val_datasets(tokenizer, titles, encoded_labels)
+        train_dataset, val_dataset = bill_classifier_trainer.get_train_val_datasets(tokenizer, titles, encoded_labels)
 
-    trainer = bill_classifier_trainer.train_model(model, tokenizer, train_dataset, val_dataset)
+        trainer = bill_classifier_trainer.train_model(model, tokenizer, train_dataset, val_dataset)
 
     wandb.finish()
 
