@@ -41,7 +41,7 @@ Our dataset consists of legislative bill metadata categorized into predefined su
 
 ### Data Files:
 
-- **`masterCategorized.csv`**: Contains labeled bill titles used for both training and evaluation (train-validation split). This data consists of all bills between the 93rd and 118th congress, specifically before November 2024
+- **`masterCategorized.csv`**: Contains labeled bill titles used for both training and evaluation (train-validation split). This data consists of all bills between the 93rd and 118th congress, specifically before November 2024. ***NOTE: this file in the repo is only a subset of the original file used for training, due to size constraints***
 - **`test.csv`**: Manually collected independent test set containing bill titles not present in the training data, used exclusively for final evaluation. This data consists of 5 bills per category from the 119th congress. In total, this test set contains 155 bills
 - **`label_mapping.json`**: Maps numerical labels to the Subject (Policy Area) names extracted from the .gov website
 
