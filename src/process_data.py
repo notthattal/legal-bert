@@ -15,9 +15,9 @@ import re
 load_dotenv()
 
 class DataProcessor():
-    def __init__(self, data_dir, master_file_name, master_categorized_file_name):
+    def __init__(self, data_dir, master_uncategorized_file_name, master_categorized_file_name):
         self.data_dir = data_dir
-        self.master_file_path = os.path.join(self.data_dir, master_file_name)
+        self.master_uncategorized_file_path = os.path.join(self.data_dir, master_uncategorized_file_name)
         self.master_categorized_file_path = os.path.join(self.data_dir, master_categorized_file_name)
         self.client = OpenAI(api_key="OPENAI_API_KEY")
          # categories from congress
@@ -35,7 +35,7 @@ class DataProcessor():
         '''
         Function to read the csv with bills' metadata, but not subjects
         '''
-        master_df = pd.read_csv(self.master_file_path)
+        master_df = pd.read_csv(self.master_uncategorized_file_path)
         return master_df
     
     def clean_master_df(self, df):
@@ -126,7 +126,7 @@ class DataProcessor():
     def process_data(self):
         uncategorized_master_df = self.read_uncategorized_master_csv()
         uncategorized_master_df = self.clean_master_df(uncategorized_master_df)
-        categorized_master_df = self.categorize_missing_cats(uncategorized_master_df, self.client, self.categories, self.categories_file_path)
+        categorized_master_df = self.categorize_missing_cats(uncategorized_master_df, self.client, self.categories, self.master_categorized_file_path)
 
         return categorized_master_df
     
