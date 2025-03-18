@@ -1,19 +1,15 @@
-from captum.attr import LayerIntegratedGradients
-import matplotlib.pyplot as plt
-import numpy as np
-import openai
+'''
+This is the main script of the project. It calls the data processing pipeling, training pipeline, 
+and evaluation pipeline. The main function in this script implements all of these steps sequentially. 
+Furthermore, the main function is used to fine-tune the model using the script run_legal_bert.ipynb,
+which calls this main function to start the training.
+'''
 import pandas as pd
-import re
-import seaborn as sns
-from scipy import stats
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 from transformers import DistilBertForSequenceClassification, DistilBertTokenizer
 import wandb
 from process_data import DataProcessor
 from evaluate import BillClassifierEvaluator
 from train import BillClassifierTrainer
-import json
 import os
 
 

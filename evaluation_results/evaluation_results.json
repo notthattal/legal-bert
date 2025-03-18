@@ -3,94 +3,94 @@
     "base_model": {
       "model_name": "Base Model (Train)",
       "avg_metrics": {
-        "accuracy": 0.011,
-        "precision": 0.04437523790366559,
-        "recall": 0.011,
-        "f1": 0.0038831268780298894,
-        "avg_rouge1_f": 0.07113773448773449,
-        "avg_rouge2_f": 0.005,
-        "avg_rougeL_f": 0.07113773448773449,
-        "avg_bleu": 0.018833233818385545,
-        "avg_bertscore_f1": 0.13763142385147512
+        "accuracy": 0.0295,
+        "precision": 0.010459152752009896,
+        "recall": 0.0295,
+        "f1": 0.014234500292447314,
+        "avg_rouge1_f": 0.07827305194805195,
+        "avg_rouge2_f": 0.002,
+        "avg_rougeL_f": 0.07816194083694085,
+        "avg_bleu": 0.015398528722898572,
+        "avg_bertscore_f1": 0.24636527650710197
       },
       "classification_report": {
         "Agriculture and Food": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 55.0
+          "support": 58.0
         },
         "Animals": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 15.0
+          "support": 6.0
         },
         "Armed Forces and National Security": {
-          "precision": 0.02857142857142857,
-          "recall": 0.008130081300813009,
-          "f1-score": 0.012658227848101266,
-          "support": 123.0
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 122.0
         },
         "Arts, Culture, and Religion": {
-          "precision": 0.0031446540880503146,
-          "recall": 0.07692307692307693,
-          "f1-score": 0.006042296072507553,
-          "support": 13.0
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 14.0
         },
         "Civil Rights and Liberties, Minority Issues": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 24.0
+          "support": 19.0
         },
         "Commerce": {
-          "precision": 0.019834710743801654,
-          "recall": 0.24489795918367346,
-          "f1-score": 0.03669724770642202,
-          "support": 49.0
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 55.0
         },
         "Congress": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 118.0
+          "support": 135.0
         },
         "Crime and Law Enforcement": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 84.0
+          "support": 89.0
         },
         "Economics and PublicFinance": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1-score": 0.0,
-          "support": 59.0
+          "precision": 0.04081632653061224,
+          "recall": 0.03636363636363636,
+          "f1-score": 0.038461538461538464,
+          "support": 55.0
         },
         "Education": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 75.0
+          "support": 57.0
         },
         "Emergency Management": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 19.0
+          "support": 23.0
         },
         "Energy": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1-score": 0.0,
-          "support": 61.0
+          "precision": 0.022727272727272728,
+          "recall": 0.19642857142857142,
+          "f1-score": 0.040740740740740744,
+          "support": 56.0
         },
         "Environmental Protection": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 62.0
+          "support": 55.0
         },
         "Families": {
           "precision": 0.0,
@@ -102,55 +102,61 @@
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 53.0
+          "support": 57.0
         },
         "Foreign Trade and International Finance": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 125.0
+          "support": 104.0
+        },
+        "Government Operations And Politics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
         },
         "Government Operations and Politics": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 138.0
+          "support": 143.0
         },
         "Health": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1-score": 0.0,
-          "support": 167.0
+          "precision": 0.07482993197278912,
+          "recall": 0.22916666666666666,
+          "f1-score": 0.11282051282051282,
+          "support": 192.0
         },
         "Housing and Community Development": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 26.0
+          "support": 19.0
         },
         "Immigration": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 36.0
+          "support": 39.0
         },
         "International Affairs": {
-          "precision": 0.6666666666666666,
-          "recall": 0.015873015873015872,
-          "f1-score": 0.031007751937984496,
-          "support": 126.0
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 145.0
         },
         "Labor and Employment": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 52.0
+          "support": 51.0
         },
         "Law": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 28.0
+          "support": 21.0
         },
         "Native Americans": {
           "precision": 0.0,
@@ -159,64 +165,64 @@
           "support": 15.0
         },
         "Public Lands and Natural Resources": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1-score": 0.0,
-          "support": 101.0
+          "precision": 0.03333333333333333,
+          "recall": 0.02197802197802198,
+          "f1-score": 0.026490066225165563,
+          "support": 91.0
         },
         "Science, Technology, Communications": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 43.0
+          "support": 30.0
         },
         "Social Sciences and History": {
-          "precision": 0.00322061191626409,
-          "recall": 0.5,
-          "f1-score": 0.0064,
-          "support": 4.0
-        },
-        "Social Welfare": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1-score": 0.0,
-          "support": 56.0
-        },
-        "Sports and Recreation": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
           "support": 3.0
         },
+        "Social Welfare": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 62.0
+        },
+        "Sports and Recreation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 12.0
+        },
         "Taxation": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 161.0
+          "support": 175.0
         },
         "Transportation and Public Works": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 76.0
+          "support": 62.0
         },
         "Water Resources Development": {
-          "precision": 0.009569377990430622,
-          "recall": 0.18181818181818182,
-          "f1-score": 0.01818181818181818,
-          "support": 22.0
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 24.0
         },
-        "accuracy": 0.011,
+        "accuracy": 0.0295,
         "macro avg": {
-          "precision": 0.02284398281177006,
-          "recall": 0.03211382234683629,
-          "f1-score": 0.0034683544295885478,
+          "precision": 0.005203238320121437,
+          "recall": 0.01466475443748171,
+          "f1-score": 0.006621601765089623,
           "support": 2000.0
         },
         "weighted avg": {
-          "precision": 0.04437523790366559,
-          "recall": 0.011,
-          "f1-score": 0.0038831268780298894,
+          "precision": 0.010459152752009896,
+          "recall": 0.0295,
+          "f1-score": 0.014234500292447314,
           "support": 2000.0
         }
       }
@@ -224,221 +230,659 @@
     "fine_tuned_model": {
       "model_name": "Fine-tuned Model (Train)",
       "avg_metrics": {
-        "accuracy": 0.6365,
-        "precision": 0.828467125208956,
-        "recall": 0.6365,
-        "f1": 0.6872754616817142,
-        "avg_rouge1_f": 0.6431531746031747,
-        "avg_rouge2_f": 0.4075,
-        "avg_rougeL_f": 0.6431531746031747,
-        "avg_bleu": 0.36167627258783464,
-        "avg_bertscore_f1": 0.7359219728191966
+        "accuracy": 0.8285,
+        "precision": 0.829730461992799,
+        "recall": 0.8285,
+        "f1": 0.8268545979616269,
+        "avg_rouge1_f": 0.8391678571428572,
+        "avg_rouge2_f": 0.513,
+        "avg_rougeL_f": 0.8388345238095237,
+        "avg_bleu": 0.45229654024861843,
+        "avg_bertscore_f1": 0.8597772773373872
       },
       "classification_report": {
         "Agriculture and Food": {
-          "precision": 0.8571428571428571,
-          "recall": 0.8727272727272727,
-          "f1-score": 0.8648648648648649,
-          "support": 55.0
+          "precision": 0.8793103448275862,
+          "recall": 0.8793103448275862,
+          "f1-score": 0.8793103448275862,
+          "support": 58.0
         },
         "Animals": {
-          "precision": 0.9,
-          "recall": 0.6,
-          "f1-score": 0.72,
-          "support": 15.0
+          "precision": 0.7142857142857143,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.7692307692307693,
+          "support": 6.0
         },
         "Armed Forces and National Security": {
-          "precision": 0.9444444444444444,
-          "recall": 0.6910569105691057,
-          "f1-score": 0.7981220657276995,
-          "support": 123.0
+          "precision": 0.9024390243902439,
+          "recall": 0.9098360655737705,
+          "f1-score": 0.9061224489795918,
+          "support": 122.0
         },
         "Arts, Culture, and Religion": {
-          "precision": 1.0,
-          "recall": 0.3076923076923077,
-          "f1-score": 0.47058823529411764,
-          "support": 13.0
+          "precision": 0.6428571428571429,
+          "recall": 0.6428571428571429,
+          "f1-score": 0.6428571428571429,
+          "support": 14.0
         },
         "Civil Rights and Liberties, Minority Issues": {
-          "precision": 0.5833333333333334,
-          "recall": 0.2916666666666667,
-          "f1-score": 0.3888888888888889,
-          "support": 24.0
-        },
-        "Commerce": {
-          "precision": 0.8235294117647058,
-          "recall": 0.5714285714285714,
-          "f1-score": 0.6746987951807228,
-          "support": 49.0
-        },
-        "Congress": {
-          "precision": 0.17391304347826086,
-          "recall": 0.9830508474576272,
-          "f1-score": 0.29554140127388534,
-          "support": 118.0
-        },
-        "Crime and Law Enforcement": {
-          "precision": 0.8717948717948718,
-          "recall": 0.40476190476190477,
-          "f1-score": 0.5528455284552846,
-          "support": 84.0
-        },
-        "Economics and PublicFinance": {
-          "precision": 0.6923076923076923,
-          "recall": 0.7627118644067796,
-          "f1-score": 0.7258064516129032,
-          "support": 59.0
-        },
-        "Education": {
-          "precision": 0.8947368421052632,
-          "recall": 0.68,
-          "f1-score": 0.7727272727272727,
-          "support": 75.0
-        },
-        "Emergency Management": {
-          "precision": 1.0,
-          "recall": 0.3684210526315789,
-          "f1-score": 0.5384615384615384,
+          "precision": 0.625,
+          "recall": 0.5263157894736842,
+          "f1-score": 0.5714285714285714,
           "support": 19.0
         },
+        "Commerce": {
+          "precision": 0.7872340425531915,
+          "recall": 0.6727272727272727,
+          "f1-score": 0.7254901960784313,
+          "support": 55.0
+        },
+        "Congress": {
+          "precision": 0.9548872180451128,
+          "recall": 0.9407407407407408,
+          "f1-score": 0.9477611940298507,
+          "support": 135.0
+        },
+        "Crime and Law Enforcement": {
+          "precision": 0.7211538461538461,
+          "recall": 0.8426966292134831,
+          "f1-score": 0.7772020725388601,
+          "support": 89.0
+        },
+        "Economics and PublicFinance": {
+          "precision": 0.9166666666666666,
+          "recall": 0.8,
+          "f1-score": 0.8543689320388349,
+          "support": 55.0
+        },
+        "Education": {
+          "precision": 0.75,
+          "recall": 0.8421052631578947,
+          "f1-score": 0.7933884297520661,
+          "support": 57.0
+        },
+        "Emergency Management": {
+          "precision": 0.6666666666666666,
+          "recall": 0.5217391304347826,
+          "f1-score": 0.5853658536585366,
+          "support": 23.0
+        },
         "Energy": {
-          "precision": 0.9142857142857143,
-          "recall": 0.5245901639344263,
-          "f1-score": 0.6666666666666666,
-          "support": 61.0
+          "precision": 0.7333333333333333,
+          "recall": 0.7857142857142857,
+          "f1-score": 0.7586206896551724,
+          "support": 56.0
         },
         "Environmental Protection": {
-          "precision": 0.9090909090909091,
-          "recall": 0.6451612903225806,
-          "f1-score": 0.7547169811320755,
-          "support": 62.0
+          "precision": 0.7719298245614035,
+          "recall": 0.8,
+          "f1-score": 0.7857142857142857,
+          "support": 55.0
         },
         "Families": {
-          "precision": 0.6,
-          "recall": 0.2727272727272727,
-          "f1-score": 0.375,
+          "precision": 0.7,
+          "recall": 0.6363636363636364,
+          "f1-score": 0.6666666666666666,
           "support": 11.0
         },
         "Finance and Financial Sector": {
-          "precision": 0.7567567567567568,
-          "recall": 0.5283018867924528,
-          "f1-score": 0.6222222222222222,
-          "support": 53.0
+          "precision": 0.92,
+          "recall": 0.8070175438596491,
+          "f1-score": 0.8598130841121495,
+          "support": 57.0
         },
         "Foreign Trade and International Finance": {
-          "precision": 0.9603960396039604,
-          "recall": 0.776,
-          "f1-score": 0.8584070796460177,
-          "support": 125.0
+          "precision": 0.9072164948453608,
+          "recall": 0.8461538461538461,
+          "f1-score": 0.8756218905472637,
+          "support": 104.0
         },
         "Government Operations and Politics": {
-          "precision": 0.719626168224299,
-          "recall": 0.5579710144927537,
-          "f1-score": 0.6285714285714286,
-          "support": 138.0
+          "precision": 0.8,
+          "recall": 0.7552447552447552,
+          "f1-score": 0.7769784172661871,
+          "support": 143.0
         },
         "Health": {
-          "precision": 0.8736842105263158,
-          "recall": 0.49700598802395207,
-          "f1-score": 0.6335877862595419,
-          "support": 167.0
+          "precision": 0.8431372549019608,
+          "recall": 0.8958333333333334,
+          "f1-score": 0.8686868686868687,
+          "support": 192.0
         },
         "Housing and Community Development": {
-          "precision": 0.8461538461538461,
-          "recall": 0.4230769230769231,
-          "f1-score": 0.5641025641025641,
-          "support": 26.0
+          "precision": 0.6923076923076923,
+          "recall": 0.9473684210526315,
+          "f1-score": 0.8,
+          "support": 19.0
         },
         "Immigration": {
-          "precision": 0.9545454545454546,
-          "recall": 0.5833333333333334,
-          "f1-score": 0.7241379310344828,
-          "support": 36.0
+          "precision": 0.7297297297297297,
+          "recall": 0.6923076923076923,
+          "f1-score": 0.7105263157894737,
+          "support": 39.0
         },
         "International Affairs": {
-          "precision": 0.8987341772151899,
-          "recall": 0.5634920634920635,
-          "f1-score": 0.6926829268292682,
-          "support": 126.0
+          "precision": 0.8581081081081081,
+          "recall": 0.8758620689655172,
+          "f1-score": 0.8668941979522184,
+          "support": 145.0
         },
         "Labor and Employment": {
-          "precision": 0.9032258064516129,
-          "recall": 0.5384615384615384,
-          "f1-score": 0.6746987951807228,
-          "support": 52.0
+          "precision": 0.7727272727272727,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.7157894736842105,
+          "support": 51.0
         },
         "Law": {
-          "precision": 0.8571428571428571,
+          "precision": 0.6923076923076923,
           "recall": 0.42857142857142855,
-          "f1-score": 0.5714285714285714,
-          "support": 28.0
+          "f1-score": 0.5294117647058824,
+          "support": 21.0
         },
         "Native Americans": {
-          "precision": 0.7647058823529411,
-          "recall": 0.8666666666666667,
-          "f1-score": 0.8125,
+          "precision": 0.8823529411764706,
+          "recall": 1.0,
+          "f1-score": 0.9375,
           "support": 15.0
         },
         "Public Lands and Natural Resources": {
-          "precision": 0.9120879120879121,
-          "recall": 0.8217821782178217,
-          "f1-score": 0.8645833333333334,
-          "support": 101.0
+          "precision": 0.8735632183908046,
+          "recall": 0.8351648351648352,
+          "f1-score": 0.8539325842696629,
+          "support": 91.0
         },
         "Science, Technology, Communications": {
-          "precision": 0.8695652173913043,
-          "recall": 0.46511627906976744,
-          "f1-score": 0.6060606060606061,
-          "support": 43.0
+          "precision": 0.6176470588235294,
+          "recall": 0.7,
+          "f1-score": 0.65625,
+          "support": 30.0
         },
         "Social Sciences and History": {
           "precision": 0.0,
           "recall": 0.0,
           "f1-score": 0.0,
-          "support": 4.0
-        },
-        "Social Welfare": {
-          "precision": 0.8260869565217391,
-          "recall": 0.6785714285714286,
-          "f1-score": 0.7450980392156863,
-          "support": 56.0
-        },
-        "Sports and Recreation": {
-          "precision": 0.6666666666666666,
-          "recall": 0.6666666666666666,
-          "f1-score": 0.6666666666666666,
           "support": 3.0
         },
+        "Social Welfare": {
+          "precision": 0.9230769230769231,
+          "recall": 0.7741935483870968,
+          "f1-score": 0.8421052631578947,
+          "support": 62.0
+        },
+        "Sports and Recreation": {
+          "precision": 0.8461538461538461,
+          "recall": 0.9166666666666666,
+          "f1-score": 0.88,
+          "support": 12.0
+        },
         "Taxation": {
-          "precision": 0.9279279279279279,
-          "recall": 0.639751552795031,
-          "f1-score": 0.7573529411764706,
-          "support": 161.0
+          "precision": 0.856353591160221,
+          "recall": 0.8857142857142857,
+          "f1-score": 0.8707865168539326,
+          "support": 175.0
         },
         "Transportation and Public Works": {
-          "precision": 0.9104477611940298,
-          "recall": 0.8026315789473685,
-          "f1-score": 0.8531468531468531,
-          "support": 76.0
+          "precision": 0.8028169014084507,
+          "recall": 0.9193548387096774,
+          "f1-score": 0.8571428571428571,
+          "support": 62.0
         },
         "Water Resources Development": {
-          "precision": 0.8888888888888888,
-          "recall": 0.7272727272727273,
-          "f1-score": 0.8,
-          "support": 22.0
+          "precision": 0.65625,
+          "recall": 0.875,
+          "f1-score": 0.75,
+          "support": 24.0
         },
-        "accuracy": 0.6365,
+        "accuracy": 0.8285,
         "macro avg": {
-          "precision": 0.8031631765437424,
-          "recall": 0.579395918118063,
-          "f1-score": 0.6460680135987611,
+          "precision": 0.7637347671705929,
+          "recall": 0.7642143614129905,
+          "f1-score": 0.7598427134882803,
           "support": 2000.0
         },
         "weighted avg": {
-          "precision": 0.828467125208956,
-          "recall": 0.6365,
-          "f1-score": 0.6872754616817142,
+          "precision": 0.829730461992799,
+          "recall": 0.8285,
+          "f1-score": 0.8268545979616269,
           "support": 2000.0
+        }
+      }
+    }
+  },
+  "test": {
+    "base_model": {
+      "model_name": "Base Model (Test)",
+      "avg_metrics": {
+        "accuracy": 0.025806451612903226,
+        "precision": 0.0039011168043426112,
+        "recall": 0.025806451612903226,
+        "f1": 0.006197607776193912,
+        "avg_rouge1_f": 0.09321556579621096,
+        "avg_rouge2_f": 0.012903225806451613,
+        "avg_rougeL_f": 0.09321556579621096,
+        "avg_bleu": 0.02720840028647602,
+        "avg_bertscore_f1": 0.22189188124311546
+      },
+      "classification_report": {
+        "Agriculture and Food": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Animals": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Armed Forces and National Security": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Arts, Culture, and Religion": {
+          "precision": 0.020202020202020204,
+          "recall": 0.4,
+          "f1-score": 0.038461538461538464,
+          "support": 5.0
+        },
+        "Civil Rights and Liberties, Minority Issues": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Commerce": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Congress": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Crime and Law Enforcement": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Economics and PublicFinance": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Education": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Emergency Management": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Energy": {
+          "precision": 0.07692307692307693,
+          "recall": 0.2,
+          "f1-score": 0.1111111111111111,
+          "support": 5.0
+        },
+        "Environmental Protection": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Families": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Finance and Financial Sector": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Foreign Trade and International Finance": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Government Operations And Politics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Health": {
+          "precision": 0.023809523809523808,
+          "recall": 0.2,
+          "f1-score": 0.0425531914893617,
+          "support": 5.0
+        },
+        "Housing and Community Development": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Immigration": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "International Affairs": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Labor and Employment": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Law": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Native Americans": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Public Lands and Natural Resources": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Science, Technology, Communications": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Social Welfare": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Sports and Recreation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Taxation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Transportation and Public Works": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Water Resources Development": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "accuracy": 0.025806451612903226,
+        "macro avg": {
+          "precision": 0.0039011168043426112,
+          "recall": 0.025806451612903226,
+          "f1-score": 0.006197607776193912,
+          "support": 155.0
+        },
+        "weighted avg": {
+          "precision": 0.0039011168043426112,
+          "recall": 0.025806451612903226,
+          "f1-score": 0.006197607776193912,
+          "support": 155.0
+        }
+      }
+    },
+    "fine_tuned_model": {
+      "model_name": "Fine-tuned Model (Test)",
+      "avg_metrics": {
+        "accuracy": 0.6,
+        "precision": 0.6734639016897082,
+        "recall": 0.6,
+        "f1": 0.6125172318720705,
+        "avg_rouge1_f": 0.6391607317413768,
+        "avg_rouge2_f": 0.43870967741935485,
+        "avg_rougeL_f": 0.6377270399851045,
+        "avg_bleu": 0.36065916793277597,
+        "avg_bertscore_f1": 0.6751913535258462
+      },
+      "classification_report": {
+        "Agriculture and Food": {
+          "precision": 0.6,
+          "recall": 0.6,
+          "f1-score": 0.6,
+          "support": 5.0
+        },
+        "Animals": {
+          "precision": 0.3333333333333333,
+          "recall": 0.2,
+          "f1-score": 0.25,
+          "support": 5.0
+        },
+        "Armed Forces and National Security": {
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1-score": 0.8,
+          "support": 5.0
+        },
+        "Arts, Culture, and Religion": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1-score": 0.75,
+          "support": 5.0
+        },
+        "Civil Rights and Liberties, Minority Issues": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8,
+          "f1-score": 0.7272727272727273,
+          "support": 5.0
+        },
+        "Commerce": {
+          "precision": 0.3333333333333333,
+          "recall": 0.2,
+          "f1-score": 0.25,
+          "support": 5.0
+        },
+        "Congress": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1-score": 0.5714285714285714,
+          "support": 5.0
+        },
+        "Crime and Law Enforcement": {
+          "precision": 0.3333333333333333,
+          "recall": 0.6,
+          "f1-score": 0.42857142857142855,
+          "support": 5.0
+        },
+        "Economics and PublicFinance": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1-score": 0.75,
+          "support": 5.0
+        },
+        "Education": {
+          "precision": 0.5,
+          "recall": 0.8,
+          "f1-score": 0.6153846153846154,
+          "support": 5.0
+        },
+        "Emergency Management": {
+          "precision": 0.16666666666666666,
+          "recall": 0.2,
+          "f1-score": 0.18181818181818182,
+          "support": 5.0
+        },
+        "Energy": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8,
+          "f1-score": 0.7272727272727273,
+          "support": 5.0
+        },
+        "Environmental Protection": {
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1-score": 0.8,
+          "support": 5.0
+        },
+        "Families": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1-score": 0.75,
+          "support": 5.0
+        },
+        "Finance and Financial Sector": {
+          "precision": 0.375,
+          "recall": 0.6,
+          "f1-score": 0.46153846153846156,
+          "support": 5.0
+        },
+        "Foreign Trade and International Finance": {
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1-score": 0.6666666666666666,
+          "support": 5.0
+        },
+        "Government Operations And Politics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "Government Operations and Politics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "Health": {
+          "precision": 0.3333333333333333,
+          "recall": 0.6,
+          "f1-score": 0.42857142857142855,
+          "support": 5.0
+        },
+        "Housing and Community Development": {
+          "precision": 0.6,
+          "recall": 0.6,
+          "f1-score": 0.6,
+          "support": 5.0
+        },
+        "Immigration": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8,
+          "f1-score": 0.7272727272727273,
+          "support": 5.0
+        },
+        "International Affairs": {
+          "precision": 0.6666666666666666,
+          "recall": 0.4,
+          "f1-score": 0.5,
+          "support": 5.0
+        },
+        "Labor and Employment": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1-score": 0.75,
+          "support": 5.0
+        },
+        "Law": {
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1-score": 0.6666666666666666,
+          "support": 5.0
+        },
+        "Native Americans": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1-score": 0.8888888888888888,
+          "support": 5.0
+        },
+        "Public Lands and Natural Resources": {
+          "precision": 0.2857142857142857,
+          "recall": 0.4,
+          "f1-score": 0.3333333333333333,
+          "support": 5.0
+        },
+        "Science, Technology, Communications": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8,
+          "f1-score": 0.7272727272727273,
+          "support": 5.0
+        },
+        "Social Welfare": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1-score": 0.8888888888888888,
+          "support": 5.0
+        },
+        "Sports and Recreation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "Taxation": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1-score": 0.5714285714285714,
+          "support": 5.0
+        },
+        "Transportation and Public Works": {
+          "precision": 0.8333333333333334,
+          "recall": 1.0,
+          "f1-score": 0.9090909090909091,
+          "support": 5.0
+        },
+        "Water Resources Development": {
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1-score": 0.6666666666666666,
+          "support": 5.0
+        },
+        "accuracy": 0.6,
+        "macro avg": {
+          "precision": 0.6524181547619048,
+          "recall": 0.58125,
+          "f1-score": 0.5933760683760684,
+          "support": 155.0
+        },
+        "weighted avg": {
+          "precision": 0.6734639016897082,
+          "recall": 0.6,
+          "f1-score": 0.6125172318720705,
+          "support": 155.0
         }
       }
     }

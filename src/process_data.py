@@ -1,11 +1,14 @@
 '''
-This script is used to process the data that was manually downloaded
+This script implements DataProcessor, the data processing pipeline.
+Given, the data collected from https://www.congress.gov/bill/119th-congress/, this script processed the csv
+by cleaning the title of each bill, reducing abbreviations, categorizes bills with missing categories using chat gpt 
+and the list of categories manually collected from the website (found under self.categories) and saves
+the final csv used for training with the bill title and bill's metadata alongside the bill's subject (or category)
 '''
 import pandas as pd
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-import numpy as np
 import re
 
 
@@ -29,10 +32,16 @@ class DataProcessor():
                            'Telecommunications and Information']
 
     def read_uncategorized_master_csv(self):
+        '''
+        Function to read the csv with bills' metadata, but not subjects
+        '''
         master_df = pd.read_csv(self.master_file_path)
         return master_df
     
     def clean_master_df(self, df):
+        '''
+        Function to clean the bills' titles by applying the replace_abbreviations functions
+        '''
         df = df.dropna(subset=['Title'])
         df['clean_title'] = df['Title'].apply(self.replace_abbreviations)
         return df
@@ -62,6 +71,11 @@ class DataProcessor():
     
     
     def get_cat_from_gpt(self, client, title, categories):
+        '''
+        Helper function that uses the OpenAI client and gpt-4-turbo to add the bill's missing category
+        given the list of categories collected from the congress website. This function is only called if
+        categories are not included (i.e missed during data collection)
+        '''
         prompt = f"""
         You are tasked with categorizing legislative bills into the following categories:
         {', '.join(categories)}.
@@ -85,6 +99,11 @@ class DataProcessor():
         return category
     
     def categorize_missing_cats(self, df, client, categories, output_file):
+        '''
+        This function categorizes missing bills' categories by applying the function 
+        get_cat_from_gpt (see above). It processes the bills in batches and then saves 
+        the result into a csv.
+        '''
         if 'Subject' not in df.columns:
             df['Subject'] = pd.NA
         

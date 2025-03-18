@@ -1,3 +1,11 @@
+'''
+This script implements BillClassifierEvaluator which is implements an evaluation pipeline to evaluate 
+the distilbert base model and the fine-tuned model. The evaluation is done by feeding the bills' titles 
+into the models, retrieving the subject prediction, and calculating different evaluation metrics given 
+the ground truths found under data (namely subsetMasterCategorized.csv, containing the ground truths 
+for the train set and test.csv, containing the ground truths for the test set gathered online based on bills 
+that have not been introduced yet and ones that do not figure in the train set)
+'''
 import os
 import pandas as pd
 import numpy as np
@@ -297,10 +305,16 @@ class BillClassifierEvaluator:
     ) -> Dict[str, Any]:
         """
         Compare the base and fine-tuned models on a sample of the training and/or test data.
+        The size of the sample can be specific in the arguments. 
+        NOTE: for testing, we varied the sizes, but for the submission the sizes will be constant
+        since we are uploading subsets of the data to github, given that the full csvs cannot be uploaded
+        as they are too large
         
         Args:
             eval_on_train: Whether to evaluate on training data
             eval_on_test: Whether to evaluate on test data
+            train_sample_size: size of the sample from the train set 
+            test_sample_size: size of the sample from the test set 
             
         Returns:
             A dictionary containing evaluation results
@@ -529,6 +543,8 @@ class BillClassifierEvaluator:
     def generate_html_report(self, results: Dict[str, Any], output_file: str = "../evaluation_results/evaluation_report.html") -> None:
         """
         Generate a comprehensive HTML report of evaluation results.
+        NOTE: This was generated with the help of Claude. Couldn't figure out how to output a properly 
+        formatted HTML file with css using a python script at first. 
         
         Args:
             results: The evaluation results dictionary
@@ -901,9 +917,9 @@ def main():
         evaluator.load_models()
 
         results = evaluator.compare_models(eval_on_train= True,
-                                           eval_on_test=False,
+                                           eval_on_test=True,
                                            train_sample_size=2000,
-                                           test_sample_size=25)
+                                           test_sample_size=155)
         
         evaluator.save_results(results,
                                output_dir='../evaluation_results')

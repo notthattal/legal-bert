@@ -72,9 +72,15 @@ class BillClassifierTrainer:
         self.unique_subjects = None
 
     def tokenize_texts(self, texts, tokenizer):
+        '''
+        Function to tokenize the text
+        '''
         return tokenizer(texts, padding=True, truncation=True, max_length=512)
     
     def encode_labels(self, df):
+        '''
+        Function to encode the bills' subjects (categories) collected from the congress website
+        '''
         encoded_labels = self.label_encoder.fit_transform(df)
         num_labels = len(self.label_encoder.classes_)
 
@@ -90,6 +96,9 @@ class BillClassifierTrainer:
         return encoded_labels, num_labels
     
     def get_train_val_datasets(self, tokenizer, titles, encoded_labels):
+        '''
+        Create the train and validation sets
+        '''
         train_texts, val_texts, train_labels, val_labels = train_test_split(titles, encoded_labels, test_size=0.2, random_state=42)
 
         train_encodings = self.tokenize_texts(train_texts, tokenizer)
@@ -102,6 +111,11 @@ class BillClassifierTrainer:
 
 
     def train_model(self, model, tokenizer, train_dataset, val_dataset):
+        '''
+        Function to fine-tune the model. It utilizes training arguments to determine the 
+        training arguments and any hyper parameters. It uses the Trainer library to specify
+        "how" the model should be trained
+        '''
         training_args = TrainingArguments(
             output_dir='./results',
             eval_strategy='epoch',
