@@ -10,9 +10,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import torch
 from torch.utils.data import Dataset
-from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
+from transformers import DistilBertForSequenceClassification, DistilBertTokenizer, Trainer, TrainingArguments
 import wandb
 from process_data import DataProcessor
+import json
 
 device = torch.device('mps') if torch.backends.mps.is_available() else (
     torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -450,6 +451,14 @@ def encode_labels(df):
     encoded_labels = label_encoder.fit_transform(df)
     num_labels = len(label_encoder.classes_)
 
+    label_mapping = dict(zip(range(len(label_encoder.classes_)), label_encoder.classes_))
+    wandb.log({"label_mapping": label_mapping})
+
+    with open('./data/label_mapping.json', 'w') as f:
+        json.dump(label_mapping, f)
+
+    print("Label mapping saved to 'label_mapping.json'")
+
     return encoded_labels, num_labels
 
 def get_train_val_datasets(tokenizer, titles, encoded_labels):
@@ -496,7 +505,7 @@ def train_model(model, tokenizer, train_dataset, val_dataset):
 
     return trainer
 
-def evaluate_model(trainer, comprehensive=False):
+def evaluate_model(trainer):
     eval_results = trainer.evaluate()
     wandb.log({"final_evaluation": eval_results})
     print(f"Evaluation results: {eval_results}")
@@ -664,9 +673,9 @@ def main(run_evaluation=True):
 
     encoded_labels, num_labels = encode_labels(categories)
 
-    model_name = "bert-base-uncased"
-    model = BertForSequenceClassification.from_pretrained(model_name, num_labels=num_labels).to(device)
-    tokenizer = BertTokenizer.from_pretrained(model_name)
+    model_name = "distilbert-base-uncased"
+    model = DistilBertForSequenceClassification.from_pretrained(model_name, num_labels=num_labels).to(device)
+    tokenizer = DistilBertTokenizer.from_pretrained(model_name)
 
     train_dataset, val_dataset = get_train_val_datasets(tokenizer, titles, encoded_labels)
 
