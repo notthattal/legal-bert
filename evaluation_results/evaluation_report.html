@@ -1,0 +1,1440 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Bill Classification Model Evaluation Report</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    line-height: 1.6;
+                    color: #333;
+                }
+                h1, h2, h3, h4 {
+                    color: #2c3e50;
+                }
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+                .section {
+                    margin-bottom: 30px;
+                    padding: 20px;
+                    background-color: #f9f9f9;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+                .metrics-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                }
+                .metrics-table th, .metrics-table td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    text-align: left;
+                }
+                .metrics-table th {
+                    background-color: #f2f2f2;
+                    font-weight: bold;
+                }
+                .metrics-table tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+                .metrics-table tr:hover {
+                    background-color: #f1f1f1;
+                }
+                .visualization {
+                    margin: 20px 0;
+                    text-align: center;
+                }
+                .visualization img {
+                    max-width: 100%;
+                    height: auto;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    border-radius: 4px;
+                }
+                .sample-predictions {
+                    overflow-x: auto;
+                }
+                .model-comparison {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+                .model-card {
+                    width: 48%;
+                    margin-bottom: 20px;
+                    padding: 15px;
+                    background-color: #fff;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+                @media (max-width: 768px) {
+                    .model-card {
+                        width: 100%;
+                    }
+                }
+                .highlight {
+                    background-color: #e8f4f8;
+                    padding: 2px 5px;
+                    border-radius: 3px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Bill Classification Model Evaluation Report</h1>
+                <p>Generated on: 2025-03-18 01:32:38</p>
+                
+                <div class="section">
+                    <h2>Executive Summary</h2>
+                    <p>This report compares the performance of the base DistilBERT model and the fine-tuned model
+                    on the task of classifying bill subjects based on their features.</p>
+        <h3>Performance Overview</h3><div class='model-comparison'>
+                <div class="model-card">
+                    <h4>Base Model (Train)</h4>
+                    <table class="metrics-table">
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td>0.0110</td>
+                        </tr>
+                        <tr>
+                            <td>Precision</td>
+                            <td>0.0444</td>
+                        </tr>
+                        <tr>
+                            <td>Recall</td>
+                            <td>0.0110</td>
+                        </tr>
+                        <tr>
+                            <td>F1 Score</td>
+                            <td>0.0039</td>
+                        </tr>
+                        <tr>
+                            <td>ROUGE-L</td>
+                            <td>0.0711</td>
+                        </tr>
+                        <tr>
+                            <td>BERTScore</td>
+                            <td>0.1376</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="model-card">
+                    <h4>Fine-tuned Model (Train)</h4>
+                    <table class="metrics-table">
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td>0.6365</td>
+                        </tr>
+                        <tr>
+                            <td>Precision</td>
+                            <td>0.8285</td>
+                        </tr>
+                        <tr>
+                            <td>Recall</td>
+                            <td>0.6365</td>
+                        </tr>
+                        <tr>
+                            <td>F1 Score</td>
+                            <td>0.6873</td>
+                        </tr>
+                        <tr>
+                            <td>ROUGE-L</td>
+                            <td>0.6432</td>
+                        </tr>
+                        <tr>
+                            <td>BERTScore</td>
+                            <td>0.7359</td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Performance Visualizations</h2>
+        
+                    <h3>Train Data Results</h3>
+                    
+                    <div class="visualization">
+                        <h4>Accuracy and F1 Score Comparison</h4>
+                        <img src="../evaluation_results/train_accuracy_f1.png" alt="Accuracy and F1 Score Comparison">
+                    </div>
+                    
+                    <div class="visualization">
+                        <h4>ROUGE-L and BERTScore Comparison</h4>
+                        <img src="../evaluation_results/train_rouge_bertscore.png" alt="ROUGE-L and BERTScore Comparison">
+                    </div>
+                    
+                    <h4>Confusion Matrices</h4>
+                    <div class="model-comparison">
+            
+                        <div class="visualization">
+                            <img src="../evaluation_results/train_base_model_confusion_matrix.png" alt="Confusion Matrix">
+                            <p>Base Model (Train) - Top 10 Subjects</p>
+                        </div>
+                
+                        <div class="visualization">
+                            <img src="../evaluation_results/train_fine_tuned_model_confusion_matrix.png" alt="Confusion Matrix">
+                            <p>Fine-tuned Model (Train) - Top 10 Subjects</p>
+                        </div>
+                </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Sample Predictions</h2>
+                    <div class="sample-predictions">
+        <h3>Train Data - Sample Predictions</h3>
+                    <h4>Base Model (Train)</h4>
+                    <table class="metrics-table">
+                        <tr>
+                            <th>Input Text (truncated)</th>
+                            <th>Ground Truth</th>
+                            <th>Prediction</th>
+                            <th>ROUGE-L</th>
+                            <th>BERTScore</th>
+                        </tr>
+                
+                        <tr class="">
+                            <td>Title: To amend the Federal Election Campaign Act of 1971 to require candidates for election to the House of Representatives or Senate to raise not less than 50 percent of their contributions from res...</td>
+                            <td>Government Operations and Politics</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.2500</td>
+                            <td>0.1752</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Low Income Energy Reinvestment Act Sponsor: Maloney, Carolyn B. [Rep.-D-NY-14] Date: 03/08/2001 Committees: House - Resources, Education and the Workforce, Energy and Commerce Latest Action: Re...</td>
+                            <td>Energy</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.0000</td>
+                            <td>0.0837</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to amend title 32, United States Code, the body of laws of the United States dealing with the National Guard, to recognize the City of Salem, Massachusetts, as the Birthplace of the Nati...</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.2222</td>
+                            <td>0.0626</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Law Enforcement Mental Health and Wellness Act of 2017 Sponsor: Donnelly, Joe [Sen.-D-IN] Date: 04/06/2017 Committees: House - Judiciary | Senate - Judiciary Latest Action: Referred to the Hous...</td>
+                            <td>Crime and Law Enforcement</td>
+                            <td>Water Resources Development</td>
+                            <td>0.0000</td>
+                            <td>0.0603</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Informed Consent Act Sponsor: Hunter, Duncan [Rep.-R-CA-45] Date: 07/31/1986 Committees: House - Energy and Commerce Latest Action: Referred to Subcommittee on Health and the Environment. Actio...</td>
+                            <td>Health</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.0000</td>
+                            <td>0.1007</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Black Lung Benefits and Revenue Amendments of 1981 Sponsor: Hatch, Orrin G. [Sen.-R-UT] Date: 12/08/1981 Committees: Senate - Finance, Labor and Human Resources Latest Action: Committee on Labo...</td>
+                            <td>Labor and Employment</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.2857</td>
+                            <td>0.1338</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Outpatient Therapy Modernization and Stabilization Act Sponsor: Boyle, Brendan F. [Rep.-D-PA-2] Date: 06/11/2020 Committees: House - Energy and Commerce, Ways and Means Latest Action: Referred ...</td>
+                            <td>Health</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.0000</td>
+                            <td>0.1007</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to increase to 32 cents per pack the Federal excise tax on cigarettes and to provide that the revenues from the additional tax shall be deposited in t...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to amend title II of the Social Security Act to provide that an individual may qualify for disability insurance benefits and the disability freeze if he has 40 quarters of coverage, rega...</td>
+                            <td>Social Welfare</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>0.2315</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Ensuring Enhanced Access to Primary Care Act Sponsor: Klobuchar, Amy [Sen.-D-MN] Date: 12/11/2014 Committees: Senate - Finance Latest Action: Read twice and referred to the Committee on Finance...</td>
+                            <td>Health</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1202</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Down To Earth Tiny Wetland Act of 1994 Sponsor: Smith, Nick [Rep.-R-MI-7] Date: 05/04/1994 Committees: House - Agriculture Latest Action: Executive Comment Requested from USDA. Action Date: 05/...</td>
+                            <td>Agriculture and Food</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>-0.1496</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Clinical Laboratory Improvement Act Amendments of 1995 Sponsor: Archer, Bill [Rep.-R-TX-7] Date: 04/04/1995 Committees: House - Commerce Latest Action: Referred to the Subcommittee on Health an...</td>
+                            <td>Health</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.0000</td>
+                            <td>0.1007</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Cosmetic Safety for Communities of Color and Professional Salon Workers Act of 2021 Sponsor: Schakowsky, Janice D. [Rep.-D-IL-9] Date: 10/08/2021 Committees: House - Energy and Commerce, Educat...</td>
+                            <td>Health</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.0000</td>
+                            <td>0.1007</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A resolution to amend Senate Resolution 128, 101st Congress, relating to the appointment of a committee to hear the articles of impeachment against Judge Walter L. Nixon, Jr., to clarify the au...</td>
+                            <td>Congress</td>
+                            <td>Water Resources Development</td>
+                            <td>0.0000</td>
+                            <td>0.0673</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Renewable Energy Credit Extension Act of 2006 Sponsor: Wilson, Heather [Rep.-R-NM-1] Date: 03/16/2006 Committees: House - Ways and Means Latest Action: Referred to the House Committee on Ways a...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: More Power for Empowerment Zones Act of 1996 Sponsor: Foglietta, Thomas M. [Rep.-D-PA-1] Date: 04/15/1996 Committees: House - Ways and Means, Banking and Financial Services, Government Reform a...</td>
+                            <td>Economics and PublicFinance</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.2857</td>
+                            <td>0.2148</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A resolution disapproving the proposed deferral of budget authority. Sponsor: Muskie, Edmund S. [Sen.-D-ME] Date: 02/07/1975 Committees: Senate - Appropriations, Budget, Public Works Latest Act...</td>
+                            <td>Economics and PublicFinance</td>
+                            <td>Water Resources Development</td>
+                            <td>0.0000</td>
+                            <td>0.0378</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: SAFE Advertising Act of 2022 Sponsor: Lujan, Ben Ray [Sen.-D-NM] Date: 07/26/2022 Committees: Senate - Commerce, Science, and Transportation Latest Action: Read twice and referred to the Commit...</td>
+                            <td>Science, Technology, Communications</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.2857</td>
+                            <td>-0.0030</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A resolution congratulating Jayden Daniels for winning the 2023 Heisman Memorial Trophy. Sponsor: Cassidy, Bill [Sen.-R-LA] Date: 12/13/2023 Committees: Senate - Commerce, Science, and Transpor...</td>
+                            <td>Sports and Recreation</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.2857</td>
+                            <td>0.2361</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A resolution providing for the consideration of the bill (H.R. 2065) to authorize appropriations to the National Aeronautics and Space Administration for research and development, construction ...</td>
+                            <td>Congress</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1516</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Native Hawaiian Education Act Sponsor: Inouye, Daniel K. [Sen.-D-HI] Date: 04/05/1979 Committees: House - Education and Labor | Senate - Indian Affairs (Select) Latest Action: Referred to House...</td>
+                            <td>Education</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1154</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to amend title 5, United States Code, to increase the uniform allowances available to Federal employees. Sponsor: Schroeder, Patricia [Rep.-D-CO-1] Date: 03/07/1977 Committees: House - P...</td>
+                            <td>Government Operations and Politics</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>0.1040</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to require the closure of Naval Station Roosevelt Roads, Puerto Rico upon termination of Armed Forces use of training ranges on the island of Vieques, Puerto Rico, involving live munitio...</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>Water Resources Development</td>
+                            <td>0.0000</td>
+                            <td>0.0704</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Supporting the goals and ideals of the International Year of Sanitation. Sponsor: Payne, Donald M. [Rep.-D-NJ-10] Date: 03/14/2008 Committees: House - Foreign Affairs Latest Action: Message on ...</td>
+                            <td>International Affairs</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>0.2387</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Birth Control and Infertility Research Centers Act of 1989 Sponsor: Schroeder, Patricia [Rep.-D-CO-1] Date: 07/20/1989 Committees: House - Energy and Commerce Latest Action: For Further Action ...</td>
+                            <td>Health</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>0.9968</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to exempt certain small businesses from the required use of the electronic fund transfer system for depository taxes, and for other purposes. Sponsor:...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Recyclable Materials Technology and Markets Development Act Sponsor: Hochbrueckner, George J. [Rep.-D-NY-1] Date: 01/03/1991 Committees: House - Energy and Commerce, Science, Space and Technolo...</td>
+                            <td>Environmental Protection</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>0.2648</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to extend for two years the credit for qualified microturbine property. Sponsor: Grayson, Alan [Rep.-D-FL-9] Date: 11/03/2015 Committees: House - Ways...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to amend chapter 34 of title 38, United States Code, to authorize the acceleration of educational assistance allowance payments under such chapter in certain cases. Sponsor: Durkin, John...</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>-0.1025</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to authorize the Secretary of the Interior to issue rights-of-way and special land use permits for the construction of pipelines in the State of Alaska under certain circumstances, and f...</td>
+                            <td>Energy</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>0.9943</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Military Spouse Job Continuity Act of 2017 Sponsor: Casey, Robert P., Jr. [Sen.-D-PA] Date: 01/12/2017 Committees: Senate - Finance Latest Action: Read twice and referred to the Committee on Fi...</td>
+                            <td>Taxation</td>
+                            <td>Arts, Culture, and Religion</td>
+                            <td>0.0000</td>
+                            <td>-0.0152</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: HAMP Termination Act of 2011 Sponsor: McHenry, Patrick T. [Rep.-R-NC-10] Date: 02/28/2011 Committees: House - Financial Services | Senate - Banking, Housing, and Urban Affairs Latest Action: Re...</td>
+                            <td>Housing and Community Development</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.2500</td>
+                            <td>0.0883</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A resolution objecting to proposed sale of weapons. Sponsor: Nelson, Gaylord [Sen.-D-WI] Date: 09/07/1976 Committees: Senate - Foreign Relations Latest Action: Referred to Senate Committee on F...</td>
+                            <td>International Affairs</td>
+                            <td>Water Resources Development</td>
+                            <td>0.0000</td>
+                            <td>0.1339</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to terminate the effectiveness of certain drinking water regulations. Sponsor: Domenici, Pete V. [Sen.-R-NM] Date: 01/31/2001 Committees: Senate - Environment and Public Works Latest Act...</td>
+                            <td>Environmental Protection</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>0.2648</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Family and Community Inflation Relief Act of 2022 Sponsor: Grassley, Chuck [Sen.-R-IA] Date: 07/21/2022 Committees: Senate - Finance Latest Action: Read twice and referred to the Committee on F...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to authorize the Secretary of the Army to undertake the phase I design memorandum stage of advanced engineering and design of the project element involving the lowermost 10.1 mile-long s...</td>
+                            <td>Water Resources Development</td>
+                            <td>Commerce</td>
+                            <td>0.0000</td>
+                            <td>0.0955</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Welfare Reform Act of 2014 Sponsor: Jordan, Jim [Rep.-R-OH-4] Date: 05/22/2014 Committees: House - Agriculture, Ways and Means, Budget, Rules, Energy and Commerce, Education and the Workforce L...</td>
+                            <td>Social Welfare</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.3333</td>
+                            <td>0.4016</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A bill to amend the Internal Revenue Code of 1986 to increase the manufacturer limitation on the number of new qualified plug-in electric drive motor vehicles eligible for credit. Sponsor: Levi...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to allow individuals a deduction for amounts paid for insurance for medical care. Sponsor: Green, Gene [Rep.-D-TX-29] Date: 01/06/1999 Committees: Hou...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to ensure that charitable beneficiaries of charitable remainder trusts are aware of their interests in such trusts. Sponsor: Gibbons, Sam [Rep.-D-FL-1...</td>
+                            <td>Taxation</td>
+                            <td>Social Sciences and History</td>
+                            <td>0.0000</td>
+                            <td>-0.1724</td>
+                        </tr>
+                    </table>
+                    <h4>Fine-tuned Model (Train)</h4>
+                    <table class="metrics-table">
+                        <tr>
+                            <th>Input Text (truncated)</th>
+                            <th>Ground Truth</th>
+                            <th>Prediction</th>
+                            <th>ROUGE-L</th>
+                            <th>BERTScore</th>
+                        </tr>
+                
+                        <tr class="correct">
+                            <td>Title: To amend the Federal Election Campaign Act of 1971 to require candidates for election to the House of Representatives or Senate to raise not less than 50 percent of their contributions from res...</td>
+                            <td>Government Operations and Politics</td>
+                            <td>Government Operations and Politics</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Low Income Energy Reinvestment Act Sponsor: Maloney, Carolyn B. [Rep.-D-NY-14] Date: 03/08/2001 Committees: House - Resources, Education and the Workforce, Energy and Commerce Latest Action: Re...</td>
+                            <td>Energy</td>
+                            <td>Energy</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to amend title 32, United States Code, the body of laws of the United States dealing with the National Guard, to recognize the City of Salem, Massachusetts, as the Birthplace of the Nati...</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Law Enforcement Mental Health and Wellness Act of 2017 Sponsor: Donnelly, Joe [Sen.-D-IN] Date: 04/06/2017 Committees: House - Judiciary | Senate - Judiciary Latest Action: Referred to the Hous...</td>
+                            <td>Crime and Law Enforcement</td>
+                            <td>Crime and Law Enforcement</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Informed Consent Act Sponsor: Hunter, Duncan [Rep.-R-CA-45] Date: 07/31/1986 Committees: House - Energy and Commerce Latest Action: Referred to Subcommittee on Health and the Environment. Actio...</td>
+                            <td>Health</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.9909</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Black Lung Benefits and Revenue Amendments of 1981 Sponsor: Hatch, Orrin G. [Sen.-R-UT] Date: 12/08/1981 Committees: Senate - Finance, Labor and Human Resources Latest Action: Committee on Labo...</td>
+                            <td>Labor and Employment</td>
+                            <td>Labor and Employment</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Outpatient Therapy Modernization and Stabilization Act Sponsor: Boyle, Brendan F. [Rep.-D-PA-2] Date: 06/11/2020 Committees: House - Energy and Commerce, Ways and Means Latest Action: Referred ...</td>
+                            <td>Health</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.9909</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to increase to 32 cents per pack the Federal excise tax on cigarettes and to provide that the revenues from the additional tax shall be deposited in t...</td>
+                            <td>Taxation</td>
+                            <td>Taxation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to amend title II of the Social Security Act to provide that an individual may qualify for disability insurance benefits and the disability freeze if he has 40 quarters of coverage, rega...</td>
+                            <td>Social Welfare</td>
+                            <td>Social Welfare</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Ensuring Enhanced Access to Primary Care Act Sponsor: Klobuchar, Amy [Sen.-D-MN] Date: 12/11/2014 Committees: Senate - Finance Latest Action: Read twice and referred to the Committee on Finance...</td>
+                            <td>Health</td>
+                            <td>Health</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Down To Earth Tiny Wetland Act of 1994 Sponsor: Smith, Nick [Rep.-R-MI-7] Date: 05/04/1994 Committees: House - Agriculture Latest Action: Executive Comment Requested from USDA. Action Date: 05/...</td>
+                            <td>Agriculture and Food</td>
+                            <td>Agriculture and Food</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Clinical Laboratory Improvement Act Amendments of 1995 Sponsor: Archer, Bill [Rep.-R-TX-7] Date: 04/04/1995 Committees: House - Commerce Latest Action: Referred to the Subcommittee on Health an...</td>
+                            <td>Health</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.9909</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Cosmetic Safety for Communities of Color and Professional Salon Workers Act of 2021 Sponsor: Schakowsky, Janice D. [Rep.-D-IL-9] Date: 10/08/2021 Committees: House - Energy and Commerce, Educat...</td>
+                            <td>Health</td>
+                            <td>Health</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A resolution to amend Senate Resolution 128, 101st Congress, relating to the appointment of a committee to hear the articles of impeachment against Judge Walter L. Nixon, Jr., to clarify the au...</td>
+                            <td>Congress</td>
+                            <td>Congress</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Renewable Energy Credit Extension Act of 2006 Sponsor: Wilson, Heather [Rep.-R-NM-1] Date: 03/16/2006 Committees: House - Ways and Means Latest Action: Referred to the House Committee on Ways a...</td>
+                            <td>Taxation</td>
+                            <td>Taxation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: More Power for Empowerment Zones Act of 1996 Sponsor: Foglietta, Thomas M. [Rep.-D-PA-1] Date: 04/15/1996 Committees: House - Ways and Means, Banking and Financial Services, Government Reform a...</td>
+                            <td>Economics and PublicFinance</td>
+                            <td>Economics and PublicFinance</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A resolution disapproving the proposed deferral of budget authority. Sponsor: Muskie, Edmund S. [Sen.-D-ME] Date: 02/07/1975 Committees: Senate - Appropriations, Budget, Public Works Latest Act...</td>
+                            <td>Economics and PublicFinance</td>
+                            <td>Economics and PublicFinance</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: SAFE Advertising Act of 2022 Sponsor: Lujan, Ben Ray [Sen.-D-NM] Date: 07/26/2022 Committees: Senate - Commerce, Science, and Transportation Latest Action: Read twice and referred to the Commit...</td>
+                            <td>Science, Technology, Communications</td>
+                            <td>Government Operations and Politics</td>
+                            <td>0.0000</td>
+                            <td>0.0471</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A resolution congratulating Jayden Daniels for winning the 2023 Heisman Memorial Trophy. Sponsor: Cassidy, Bill [Sen.-R-LA] Date: 12/13/2023 Committees: Senate - Commerce, Science, and Transpor...</td>
+                            <td>Sports and Recreation</td>
+                            <td>Sports and Recreation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A resolution providing for the consideration of the bill (H.R. 2065) to authorize appropriations to the National Aeronautics and Space Administration for research and development, construction ...</td>
+                            <td>Congress</td>
+                            <td>Congress</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Native Hawaiian Education Act Sponsor: Inouye, Daniel K. [Sen.-D-HI] Date: 04/05/1979 Committees: House - Education and Labor | Senate - Indian Affairs (Select) Latest Action: Referred to House...</td>
+                            <td>Education</td>
+                            <td>Native Americans</td>
+                            <td>0.0000</td>
+                            <td>0.2493</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to amend title 5, United States Code, to increase the uniform allowances available to Federal employees. Sponsor: Schroeder, Patricia [Rep.-D-CO-1] Date: 03/07/1977 Committees: House - P...</td>
+                            <td>Government Operations and Politics</td>
+                            <td>Government Operations and Politics</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to require the closure of Naval Station Roosevelt Roads, Puerto Rico upon termination of Armed Forces use of training ranges on the island of Vieques, Puerto Rico, involving live munitio...</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Supporting the goals and ideals of the International Year of Sanitation. Sponsor: Payne, Donald M. [Rep.-D-NJ-10] Date: 03/14/2008 Committees: House - Foreign Affairs Latest Action: Message on ...</td>
+                            <td>International Affairs</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.0737</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Birth Control and Infertility Research Centers Act of 1989 Sponsor: Schroeder, Patricia [Rep.-D-CO-1] Date: 07/20/1989 Committees: House - Energy and Commerce Latest Action: For Further Action ...</td>
+                            <td>Health</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.9909</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to exempt certain small businesses from the required use of the electronic fund transfer system for depository taxes, and for other purposes. Sponsor:...</td>
+                            <td>Taxation</td>
+                            <td>Taxation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Recyclable Materials Technology and Markets Development Act Sponsor: Hochbrueckner, George J. [Rep.-D-NY-1] Date: 01/03/1991 Committees: House - Energy and Commerce, Science, Space and Technolo...</td>
+                            <td>Environmental Protection</td>
+                            <td>Environmental Protection</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to extend for two years the credit for qualified microturbine property. Sponsor: Grayson, Alan [Rep.-D-FL-9] Date: 11/03/2015 Committees: House - Ways...</td>
+                            <td>Taxation</td>
+                            <td>Taxation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to amend chapter 34 of title 38, United States Code, to authorize the acceleration of educational assistance allowance payments under such chapter in certain cases. Sponsor: Durkin, John...</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>Armed Forces and National Security</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to authorize the Secretary of the Interior to issue rights-of-way and special land use permits for the construction of pipelines in the State of Alaska under certain circumstances, and f...</td>
+                            <td>Energy</td>
+                            <td>Energy</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Military Spouse Job Continuity Act of 2017 Sponsor: Casey, Robert P., Jr. [Sen.-D-PA] Date: 01/12/2017 Committees: Senate - Finance Latest Action: Read twice and referred to the Committee on Fi...</td>
+                            <td>Taxation</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.1640</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: HAMP Termination Act of 2011 Sponsor: McHenry, Patrick T. [Rep.-R-NC-10] Date: 02/28/2011 Committees: House - Financial Services | Senate - Banking, Housing, and Urban Affairs Latest Action: Re...</td>
+                            <td>Housing and Community Development</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.0009</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: A resolution objecting to proposed sale of weapons. Sponsor: Nelson, Gaylord [Sen.-D-WI] Date: 09/07/1976 Committees: Senate - Foreign Relations Latest Action: Referred to Senate Committee on F...</td>
+                            <td>International Affairs</td>
+                            <td>Congress</td>
+                            <td>0.0000</td>
+                            <td>0.0737</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to terminate the effectiveness of certain drinking water regulations. Sponsor: Domenici, Pete V. [Sen.-R-NM] Date: 01/31/2001 Committees: Senate - Environment and Public Works Latest Act...</td>
+                            <td>Environmental Protection</td>
+                            <td>Environmental Protection</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="">
+                            <td>Title: Family and Community Inflation Relief Act of 2022 Sponsor: Grassley, Chuck [Sen.-R-IA] Date: 07/21/2022 Committees: Senate - Finance Latest Action: Read twice and referred to the Committee on F...</td>
+                            <td>Taxation</td>
+                            <td>Economics and PublicFinance</td>
+                            <td>0.0000</td>
+                            <td>-0.0275</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to authorize the Secretary of the Army to undertake the phase I design memorandum stage of advanced engineering and design of the project element involving the lowermost 10.1 mile-long s...</td>
+                            <td>Water Resources Development</td>
+                            <td>Water Resources Development</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: Welfare Reform Act of 2014 Sponsor: Jordan, Jim [Rep.-R-OH-4] Date: 05/22/2014 Committees: House - Agriculture, Ways and Means, Budget, Rules, Energy and Commerce, Education and the Workforce L...</td>
+                            <td>Social Welfare</td>
+                            <td>Social Welfare</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: A bill to amend the Internal Revenue Code of 1986 to increase the manufacturer limitation on the number of new qualified plug-in electric drive motor vehicles eligible for credit. Sponsor: Levi...</td>
+                            <td>Taxation</td>
+                            <td>Taxation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to allow individuals a deduction for amounts paid for insurance for medical care. Sponsor: Green, Gene [Rep.-D-TX-29] Date: 01/06/1999 Committees: Hou...</td>
+                            <td>Taxation</td>
+                            <td>Taxation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    
+                        <tr class="correct">
+                            <td>Title: To amend the Internal Revenue Code of 1986 to ensure that charitable beneficiaries of charitable remainder trusts are aware of their interests in such trusts. Sponsor: Gibbons, Sam [Rep.-D-FL-1...</td>
+                            <td>Taxation</td>
+                            <td>Taxation</td>
+                            <td>1.0000</td>
+                            <td>1.0000</td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>Detailed Metrics</h2>
+        <h3>Train Data - Model Comparison</h3>
+                    <table class="metrics-table">
+                        <tr>
+                            <th>Metric</th>
+            <th>Base Model (Train)</th><th>Fine-tuned Model (Train)</th></tr>
+                    <tr>
+                        <td>Accuracy</td>
+                <td>0.0110</td><td>0.6365</td></tr>
+                    <tr>
+                        <td>Precision</td>
+                <td>0.0444</td><td>0.8285</td></tr>
+                    <tr>
+                        <td>Recall</td>
+                <td>0.0110</td><td>0.6365</td></tr>
+                    <tr>
+                        <td>F1 Score</td>
+                <td>0.0039</td><td>0.6873</td></tr>
+                    <tr>
+                        <td>ROUGE-1</td>
+                <td>0.0711</td><td>0.6432</td></tr>
+                    <tr>
+                        <td>ROUGE-2</td>
+                <td>0.0050</td><td>0.4075</td></tr>
+                    <tr>
+                        <td>ROUGE-L</td>
+                <td>0.0711</td><td>0.6432</td></tr>
+                    <tr>
+                        <td>BLEU</td>
+                <td>0.0188</td><td>0.3617</td></tr>
+                    <tr>
+                        <td>BERTScore</td>
+                <td>0.1376</td><td>0.7359</td></tr></table><h3>Per-Class Performance</h3>
+                    <h4>Base Model (Train)</h4>
+                    <div class="sample-predictions">
+                        <table class="metrics-table">
+                            <tr>
+                                <th>Class</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1 Score</th>
+                                <th>Support</th>
+                            </tr>
+                
+                            <tr>
+                                <td>Agriculture and Food</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>55.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Animals</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>15.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Armed Forces and National Security</td>
+                                <td>0.0286</td>
+                                <td>0.0081</td>
+                                <td>0.0127</td>
+                                <td>123.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Arts, Culture, and Religion</td>
+                                <td>0.0031</td>
+                                <td>0.0769</td>
+                                <td>0.0060</td>
+                                <td>13.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Civil Rights and Liberties, Minority Issues</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>24.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Commerce</td>
+                                <td>0.0198</td>
+                                <td>0.2449</td>
+                                <td>0.0367</td>
+                                <td>49.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Congress</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>118.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Crime and Law Enforcement</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>84.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Economics and PublicFinance</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>59.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Education</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>75.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Emergency Management</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>19.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Energy</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>61.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Environmental Protection</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>62.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Families</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>11.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Finance and Financial Sector</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>53.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Foreign Trade and International Finance</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>125.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Government Operations and Politics</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>138.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Health</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>167.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Housing and Community Development</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>26.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Immigration</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>36.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>International Affairs</td>
+                                <td>0.6667</td>
+                                <td>0.0159</td>
+                                <td>0.0310</td>
+                                <td>126.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Labor and Employment</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>52.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Law</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>28.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Native Americans</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>15.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Public Lands and Natural Resources</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>101.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Science, Technology, Communications</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>43.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Social Sciences and History</td>
+                                <td>0.0032</td>
+                                <td>0.5000</td>
+                                <td>0.0064</td>
+                                <td>4.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Social Welfare</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>56.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Sports and Recreation</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>3.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Taxation</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>161.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Transportation and Public Works</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>76.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Water Resources Development</td>
+                                <td>0.0096</td>
+                                <td>0.1818</td>
+                                <td>0.0182</td>
+                                <td>22.0</td>
+                            </tr>
+                    
+                        </table>
+                    </div>
+                
+                    <h4>Fine-tuned Model (Train)</h4>
+                    <div class="sample-predictions">
+                        <table class="metrics-table">
+                            <tr>
+                                <th>Class</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1 Score</th>
+                                <th>Support</th>
+                            </tr>
+                
+                            <tr>
+                                <td>Agriculture and Food</td>
+                                <td>0.8571</td>
+                                <td>0.8727</td>
+                                <td>0.8649</td>
+                                <td>55.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Animals</td>
+                                <td>0.9000</td>
+                                <td>0.6000</td>
+                                <td>0.7200</td>
+                                <td>15.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Armed Forces and National Security</td>
+                                <td>0.9444</td>
+                                <td>0.6911</td>
+                                <td>0.7981</td>
+                                <td>123.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Arts, Culture, and Religion</td>
+                                <td>1.0000</td>
+                                <td>0.3077</td>
+                                <td>0.4706</td>
+                                <td>13.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Civil Rights and Liberties, Minority Issues</td>
+                                <td>0.5833</td>
+                                <td>0.2917</td>
+                                <td>0.3889</td>
+                                <td>24.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Commerce</td>
+                                <td>0.8235</td>
+                                <td>0.5714</td>
+                                <td>0.6747</td>
+                                <td>49.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Congress</td>
+                                <td>0.1739</td>
+                                <td>0.9831</td>
+                                <td>0.2955</td>
+                                <td>118.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Crime and Law Enforcement</td>
+                                <td>0.8718</td>
+                                <td>0.4048</td>
+                                <td>0.5528</td>
+                                <td>84.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Economics and PublicFinance</td>
+                                <td>0.6923</td>
+                                <td>0.7627</td>
+                                <td>0.7258</td>
+                                <td>59.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Education</td>
+                                <td>0.8947</td>
+                                <td>0.6800</td>
+                                <td>0.7727</td>
+                                <td>75.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Emergency Management</td>
+                                <td>1.0000</td>
+                                <td>0.3684</td>
+                                <td>0.5385</td>
+                                <td>19.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Energy</td>
+                                <td>0.9143</td>
+                                <td>0.5246</td>
+                                <td>0.6667</td>
+                                <td>61.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Environmental Protection</td>
+                                <td>0.9091</td>
+                                <td>0.6452</td>
+                                <td>0.7547</td>
+                                <td>62.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Families</td>
+                                <td>0.6000</td>
+                                <td>0.2727</td>
+                                <td>0.3750</td>
+                                <td>11.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Finance and Financial Sector</td>
+                                <td>0.7568</td>
+                                <td>0.5283</td>
+                                <td>0.6222</td>
+                                <td>53.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Foreign Trade and International Finance</td>
+                                <td>0.9604</td>
+                                <td>0.7760</td>
+                                <td>0.8584</td>
+                                <td>125.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Government Operations and Politics</td>
+                                <td>0.7196</td>
+                                <td>0.5580</td>
+                                <td>0.6286</td>
+                                <td>138.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Health</td>
+                                <td>0.8737</td>
+                                <td>0.4970</td>
+                                <td>0.6336</td>
+                                <td>167.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Housing and Community Development</td>
+                                <td>0.8462</td>
+                                <td>0.4231</td>
+                                <td>0.5641</td>
+                                <td>26.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Immigration</td>
+                                <td>0.9545</td>
+                                <td>0.5833</td>
+                                <td>0.7241</td>
+                                <td>36.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>International Affairs</td>
+                                <td>0.8987</td>
+                                <td>0.5635</td>
+                                <td>0.6927</td>
+                                <td>126.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Labor and Employment</td>
+                                <td>0.9032</td>
+                                <td>0.5385</td>
+                                <td>0.6747</td>
+                                <td>52.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Law</td>
+                                <td>0.8571</td>
+                                <td>0.4286</td>
+                                <td>0.5714</td>
+                                <td>28.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Native Americans</td>
+                                <td>0.7647</td>
+                                <td>0.8667</td>
+                                <td>0.8125</td>
+                                <td>15.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Public Lands and Natural Resources</td>
+                                <td>0.9121</td>
+                                <td>0.8218</td>
+                                <td>0.8646</td>
+                                <td>101.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Science, Technology, Communications</td>
+                                <td>0.8696</td>
+                                <td>0.4651</td>
+                                <td>0.6061</td>
+                                <td>43.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Social Sciences and History</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>0.0000</td>
+                                <td>4.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Social Welfare</td>
+                                <td>0.8261</td>
+                                <td>0.6786</td>
+                                <td>0.7451</td>
+                                <td>56.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Sports and Recreation</td>
+                                <td>0.6667</td>
+                                <td>0.6667</td>
+                                <td>0.6667</td>
+                                <td>3.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Taxation</td>
+                                <td>0.9279</td>
+                                <td>0.6398</td>
+                                <td>0.7574</td>
+                                <td>161.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Transportation and Public Works</td>
+                                <td>0.9104</td>
+                                <td>0.8026</td>
+                                <td>0.8531</td>
+                                <td>76.0</td>
+                            </tr>
+                    
+                            <tr>
+                                <td>Water Resources Development</td>
+                                <td>0.8889</td>
+                                <td>0.7273</td>
+                                <td>0.8000</td>
+                                <td>22.0</td>
+                            </tr>
+                    
+                        </table>
+                    </div>
+                
+                </div>
+            </div>
+        </body>
+        </html>
+        

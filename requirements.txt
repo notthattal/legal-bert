@@ -12,3 +12,7 @@ transformers==4.49.0
 wandb==0.19.8
 dotenv==0.9.9 
 python-dotenv==1.0.1
+rouge-score==0.1.2
+bert-score==0.3.13
+pillow==11.1.0
+nltk==3.9.1
