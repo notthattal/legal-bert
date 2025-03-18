@@ -151,6 +151,23 @@ source venv/bin/activate  # For Windows use venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 
+3. Download the model from the following link:
+- [Download Fine-Tuned DistilBERT](<https://drive.google.com/file/d/13K0Pb_xXn4dpwj1TnD_Xlmwtbv6zZajN/view?usp=sharing>)
+- Make sure the `.zip` is downloaded under `legal-bert/`
+- Unzip the file using: 
+**on mac OS**
+```bash
+   unzip models.zip -d . && mv __MACOSX/models models && rm -rf __MACOSX
+   rm models.zip
+```
+
+4. To run evalutaion: 
+```bash
+cd src
+python evaluate.py
+```
+- This outputs an HTML File alongside plots and confusion matrices under `legal-bert/evaluation_results`
+
 ---
 
 ## Conclusion
