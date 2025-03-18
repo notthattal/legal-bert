@@ -137,17 +137,7 @@ class BillClassifierEvaluator:
             A string containing the formatted input features
         """
         # Combine relevant features into a single text
-        features = [
-            f"Title: {row['Title']}",
-            f"Sponsor: {row['Sponsor']}",
-            f"Date: {row['Date of Introduction']}",
-            f"Committees: {row['Committees']}",
-            f"Latest Action: {row['Latest Action']}",
-            f"Action Date: {row['Latest Action Date']}",
-            f"Cosponsors: {row['Number of Cosponsors']}"
-        ]
-        
-        return " ".join(features)
+        return row['Title']
     
     def predict_subject(
         self, 
@@ -287,7 +277,8 @@ class BillClassifierEvaluator:
         class_report = classification_report(
             results['ground_truth'], 
             results['predictions'],
-            output_dict=True
+            output_dict=True,
+            zero_division=0
         )
         
         return {
