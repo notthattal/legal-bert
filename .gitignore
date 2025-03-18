@@ -1,5 +1,5 @@
 venv/
-data/
+data/masterCategorized.csv
 models/
 wandb/
 .env
