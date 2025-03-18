@@ -29,5 +29,5 @@ legal-bert/
 ├── .gitignore                      # Git ignore file
 ├── README.md                       # Project documentation
 ├── requirements.txt                # Python dependencies
-└── run_legal_bert.ipynb            # Jupyter notebook for running and experimenting with the model
+└── run_legal_bert.ipynb            # Jupyter notebook used for training the model in Colab
 ```
