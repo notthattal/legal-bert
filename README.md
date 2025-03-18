@@ -157,7 +157,7 @@ pip install -r requirements.txt
 - Unzip the file using: 
 **on mac OS**
 ```bash
-   unzip models.zip -d . && mv __MACOSX/models models && rm -rf __MACOSX
+   unzip models.zip -x "__MACOSX/*" "._*"
    rm models.zip
 ```
 
